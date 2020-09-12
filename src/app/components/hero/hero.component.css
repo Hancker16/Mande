@@ -1,0 +1,12 @@
+@font-face{
+    font-family: Kalam;
+    src: url(../../../assets/fonts/Kalam/Kalam-Bold.ttf);
+}
+.jumbotron{
+    height: 200px;
+    background-color: #dfd3c3;
+    line-height: 50px;
+    font-family: Kalam;
+   
+
+}

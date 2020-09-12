@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+            <div class="card-register">
+                <div class="card">
+                    <div class="card-body text-center" >
+                        <form >
+                            <div class="form-group" >
+                                <h5 class="card-title ">Pedido XXX</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" >Cantidad de servicios: {{cantidad}}</h6>
+                                <button type="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#exampleModal">Ver detalle</button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Detalle del pedido XXX</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <table class="table">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th scope="col">Servicio</th>
+                                                                <th scope="col">Pago</th>
+                                                                <th scope="col">Comisión</th>
+                                                                <th scope="col">Opción</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor = "let s of servicios">
+                                                                <th scope="row">{{s.nombre_servicio}}</th>
+                                                                <th scope="row">{{s.costo}}</th>
+                                                                <th scope="row">{{s.costo}}</th>
+                                                                <th scope="row">{{s.costo}}</th>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

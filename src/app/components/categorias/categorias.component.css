@@ -1,0 +1,9 @@
+.card-title::first-letter{
+    text-transform: uppercase;
+}
+
+.card-deck .card {
+    margin-bottom: 5px;
+}
+
+

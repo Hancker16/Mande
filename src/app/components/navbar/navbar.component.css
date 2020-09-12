@@ -1,0 +1,10 @@
+@font-face{
+    font-family: Kalam;
+    src: url(../../../assets/fonts/Kalam/Kalam-Bold.ttf);
+}
+
+#nav{
+    font-family: Kalam;
+    background-color:#f0ece3;
+
+}

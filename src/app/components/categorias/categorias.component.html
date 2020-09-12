@@ -1,0 +1,17 @@
+<app-hero></app-hero>
+<div class="container">
+    <div class="row w-100">
+        <div class="col-sm-4" *ngFor = "let c of categorias">
+            <div class="card-deck">
+            <div class="card" >
+                <div class="card-body">
+                    <h5 class="card-title text-lowercase">{{c.nombre_categoria}}</h5>
+                    <p class="card-text">{{c.descripcion}}</p>
+                    
+                    <a [routerLink]="'/servicios'+'/'+c.idcategoria" class="btn btn-info" >Pedir</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
