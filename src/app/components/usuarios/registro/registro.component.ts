@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataApiService } from 'src/app/services/data-api.service';
+import { AuthService } from "src/app/services/auth.service";
+import { Router } from "@angular/router";
 import { error } from '@angular/compiler/src/util';
 import { Observable } from 'rxjs';
 
@@ -7,7 +9,7 @@ import { Observable } from 'rxjs';
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css'],
-  providers: [DataApiService]
+  providers: [DataApiService,AuthService]
 })
 
 export class RegistroComponent implements OnInit {
@@ -16,7 +18,9 @@ export class RegistroComponent implements OnInit {
   public new_user: any;
 
   constructor(
-    private dataApi: DataApiService
+    private dataApi: DataApiService,
+    private authApi: AuthService,
+    private router: Router
   ) { 
 
     this.new_user = {
@@ -58,15 +62,16 @@ export class RegistroComponent implements OnInit {
     this.dataApi.addUser(this.new_user).subscribe(
       response => {
         console.log(response);
-        
-        form.reset();
-       
+        //form.reset();
       },
       error => {
         console.log(<any>error);
         console.log(this.new_user);
       }
     )
+    this.authApi.setUser(this.new_user);
+    this.authApi.setToken(JSON.stringify(this.new_user.documento));
+    this.router.navigate(["pedidos"]);
   }
 
 }

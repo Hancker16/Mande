@@ -8,9 +8,11 @@
                             <div class="form-group" >
                                 <h5 class="card-title ">Pedido XXX</h5>
                                 <h6 class="card-subtitle mb-2 text-muted" >Cantidad de servicios: {{cantidad}}</h6>
+                                <h6 class="alert alert-secondary" >Estado: INICIADO</h6>
                                 <button type="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#exampleModal">Ver detalle</button>
+                                
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Detalle del pedido XXX</h5>
@@ -19,7 +21,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form>
+                                               
                                                     <table class="table">
                                                         <thead class="thead-dark">
                                                             <tr>
@@ -30,20 +32,42 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor = "let s of servicios">
-                                                                <th scope="row">{{s.nombre_servicio}}</th>
-                                                                <th scope="row">{{s.costo}}</th>
-                                                                <th scope="row">{{s.costo}}</th>
-                                                                <th scope="row">{{s.costo}}</th>
+                                                            <tr *ngFor = "let s of serviciosls">
+                                                                <th id="name" scope="row">{{s.servicios.nombre_servicio}}</th>
+                                                                <th scope="row">{{s.pagare}}</th>
+                                                                <th scope="row">{{s.costo_total}}</th>
+                                                                <th scope="row"><button type="submit" (click)="quitarItem(s.servicios.id_servicio)" class="btn btn-warning">Quitar</button></th>
+                                                            </tr>
+                                                            <tr class="table-info">
+                                                                <th scope="row"></th>
+                                                                <th scope="row">Total</th>
+                                                                <th scope="row">Total</th>
                                                             </tr>
                                                         </tbody>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary" >Guardar</button>
+                                                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#pago" aria-expanded="false" aria-controls="pago"  >Guardar y Pagar</button>
+                                                            <button type="submit" class="btn btn-primary" (click)="deletePedidolocal()" >Eliminar</button>
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                                        </div>
                                                     </table>
-
-                                                </form>
+                                                    <div class="collapse" id="pago">
+                                                        <div class="card card-body">
+                                                            <form #newP="ngForm" (ngSubmit)="onSubmit(newP)">
+                                                                <div class="form-group">
+                                                                    <div class="form-check form-check-inline" *ngFor="let tp of tipopago">
+                                                                        <input class="form-check-input" type="radio" name="pago" id="pago" value="{{tp.idforma_pago}}" #pago="ngModel" [(ngModel)]="new_orden.forma_pago.idforma_pago">
+                                                                        <label class="form-check-label" for="pago">{{tp.forma_pago}}</label>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <button type="submit" class="btn btn-lg btn-success">Pagar</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </form>
@@ -52,4 +76,5 @@
             </div>
         </div>
     </div>
+    <hr>
 </div>

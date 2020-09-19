@@ -14,6 +14,7 @@ export class ServiciosComponent implements OnInit {
   servicios =[];
   public catId: any;
   public new_pedido: any;
+  tipocomproban=[];
 
   constructor(
     private dataApi: DataApiService,
@@ -22,8 +23,22 @@ export class ServiciosComponent implements OnInit {
   ) { 
 
     this.new_pedido = {
-      "idservicio":"",
-      "costo":""
+      "idorden":"",
+      "codigo_orden":"",
+      "costo_total":{servicios: "costo"},
+      "pagare":"",
+      "vuelto":"",
+      "activo":1,
+      "create_at":"",
+      "update_at":"",
+      
+      "tipocomprobante":{"idtipo_comprobante":""},
+      "proveedor":{"idproveedor":392},
+      "servicios":{
+        id_servicio:"id_servicio",
+        nombre_servicio:"nombre_servicio"},
+      
+  
     }
 
     this._route.params.subscribe((params: Params)=>{
@@ -47,19 +62,26 @@ export class ServiciosComponent implements OnInit {
       }
     )
 
+    //Obtener todos los tipos de comprobante del api rest
+    this.dataApi.getTipoComprobante().subscribe(
+      result=>{
+        this.tipocomproban = result;
+
+      },error =>{
+        console.log(error);
+      }
+    )
+
    
   }
 
   onSubmit(form){
-    this.dataApi.addPedidoLocal(JSON.stringify(this.new_pedido.idservicio),this.new_pedido);
-    
-    form.reset();
-    
+    this.dataApi.addPedidoLocal(JSON.stringify(this.new_pedido.servicios.id_servicio),this.new_pedido);   
   }
 
-  key(Key: string){
+  /*key(Key: string){
     return this.dataApi.obtenerPedidoLocal(this.new_pedido.idservicio);
     console.log()
-  }
+  }*/
 
 }
